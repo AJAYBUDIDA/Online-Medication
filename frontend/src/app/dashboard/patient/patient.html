@@ -1,0 +1,102 @@
+<div class="min-h-screen bg-slate-50 flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-800 text-white flex-shrink-0 hidden md:block">
+        <div class="p-6 border-b border-blue-700">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <span>⚕️</span> MedManager
+            </h1>
+            <p class="text-xs text-blue-300 mt-1">Patient Portal</p>
+        </div>
+        <nav class="mt-6 px-4 space-y-2">
+            <a href="/patient" class="block py-2.5 px-4 rounded transition duration-200 bg-blue-700 text-white">
+                🏠 Home
+            </a>
+            <a routerLink="/patient/prescriptions"
+                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                💊 Prescriptions
+            </a>
+            <a routerLink="/patient/appointments"
+                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                📅 Reminders & Appointments
+            </a>
+            <a routerLink="/patient/profile"
+                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                👤 Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-0 w-64 p-4 bg-blue-900">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-sm font-bold">
+                    {{user.username?.charAt(0).toUpperCase()}}
+                </div>
+                <div>
+                    <p class="text-sm font-medium">{{user.username}}</p>
+                    <button (click)="logout()" class="text-xs text-blue-300 hover:text-white">Logout</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-8">
+            <h2 class="text-xl font-semibold text-gray-800">My Health Dashboard</h2>
+            <div class="flex items-center gap-4">
+                <app-notification-center></app-notification-center>
+                <div class="md:hidden">
+                    <button (click)="logout()" class="text-sm text-red-600 font-medium">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg shadow-lg p-6 mb-8 text-white">
+                <h1 class="text-2xl font-bold mb-2">Welcome back, {{user.username}}! 👋</h1>
+                <p class="opacity-90">Here is your health overview for today.</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div
+                    class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-t-4 border-t-green-500 text-center hover:shadow-md transition-shadow">
+                    <div
+                        class="text-green-500 text-4xl mb-2 bg-green-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                        💊</div>
+                    <h3 class="font-bold text-gray-500 text-sm uppercase tracking-wide">Active Prescriptions</h3>
+                    <p class="text-3xl font-extrabold mt-2 text-gray-900">{{activeCount}}</p>
+                    <span class="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-sm">Current</span>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-t-4 border-t-red-500 text-center hover:shadow-md transition-shadow">
+                    <div
+                        class="text-red-500 text-4xl mb-2 bg-red-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                        ⚠️</div>
+                    <h3 class="font-bold text-gray-500 text-sm uppercase tracking-wide">Expired / Renewal Needed</h3>
+                    <p class="text-3xl font-extrabold mt-2 text-gray-900">{{expiredCount}}</p>
+                    <span class="text-xs text-red-600 font-medium bg-red-50 px-2 py-1 rounded-sm">Action required</span>
+                </div>
+            </div>
+
+            <!-- Prescriptions -->
+            <div class="bg-white p-8 rounded-lg shadow-sm mb-8 border border-gray-200 border-t-4 border-t-blue-500">
+                <h2 class="text-lg font-bold mb-6 flex items-center justify-between text-blue-800">
+                    <span class="flex items-center gap-3"><span class="text-blue-500">💊</span> Medications &
+                        Prescriptions</span>
+                    <button routerLink="/patient/prescriptions"
+                        class="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-md hover:bg-blue-200 transition-colors">View
+                        All</button>
+                </h2>
+                <div
+                    class="flex flex-col items-center justify-center py-12 text-center bg-white rounded-md border border-gray-200 border-dashed">
+                    <div class="text-gray-300 text-5xl mb-3">📄</div>
+                    <p class="text-gray-500 font-medium">No recent prescriptions available</p>
+                    <p class="text-gray-400 text-sm mt-1">Consult a doctor to get a new prescription.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>

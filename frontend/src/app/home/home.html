@@ -1,0 +1,113 @@
+<div class="min-h-screen bg-slate-50 text-gray-800 font-sans selection:bg-blue-100 selection:text-blue-900">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 bg-blue-700 rounded-md flex items-center justify-center text-white text-sm shadow-sm">
+                    🏥
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-800">
+                    MedSync<span class="text-blue-700">Pro</span>
+                </span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 font-medium text-gray-600 text-sm">
+                <a href="#features" class="hover:text-blue-700 transition-colors">Features</a>
+                <a href="#roles" class="hover:text-blue-700 transition-colors">Departments</a>
+                <a href="#about" class="hover:text-blue-700 transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#roles"
+                    class="text-gray-600 font-semibold hover:text-blue-700 transition-colors text-sm">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-20 pb-16 px-6 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div
+                class="inline-flex items-center gap-2 bg-blue-50 text-blue-800 px-3 py-1 rounded-full text-xs font-bold mb-6 border border-blue-100">
+                <span class="text-blue-600">ℹ️</span> Official Medical Management System
+            </div>
+            <h1
+                class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight leading-tight max-w-4xl mx-auto">
+                Advanced Healthcare
+                <span class="text-blue-700">Management Ecosystem</span>
+            </h1>
+            <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Streamlining Patient care, Doctor consultations, and Pharmacy inventory in one secure, unified platform.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#roles"
+                    class="px-8 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-md font-bold shadow-md transition-all">
+                    Register
+                </a>
+                <a href="#roles"
+                    class="px-8 py-3 bg-white border border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-700 rounded-md font-bold transition-all">
+                    View Departments
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Roles Section -->
+    <section id="roles" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Select Your Department</h2>
+                <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Patient Card -->
+                <a routerLink="/login/patient"
+                    class="group bg-white p-6 rounded-lg border border-gray-200 border-t-4 border-t-blue-600 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div
+                        class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-blue-100 transition-colors">
+                        👤
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">Patient
+                        Portal</h3>
+                    <p class="text-gray-500 text-sm">Access medical records, prescriptions, and appointments.</p>
+                </a>
+
+                <!-- Doctor Card -->
+                <a routerLink="/login/doctor"
+                    class="group bg-white p-6 rounded-lg border border-gray-200 border-t-4 border-t-emerald-600 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div
+                        class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-emerald-100 transition-colors">
+                        🩺
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
+                        Doctor Portal</h3>
+                    <p class="text-gray-500 text-sm">Manage patients, issue prescriptions, and track history.</p>
+                </a>
+
+                <!-- Pharmacist Card -->
+                <a routerLink="/login/pharmacist"
+                    class="group bg-white p-6 rounded-lg border border-gray-200 border-t-4 border-t-amber-500 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div
+                        class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-amber-100 transition-colors">
+                        💊
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-700 transition-colors">
+                        Pharmacy</h3>
+                    <p class="text-gray-500 text-sm">Inventory management and medication dispensing units.</p>
+                </a>
+
+                <!-- Admin Card -->
+                <a routerLink="/login/admin"
+                    class="group bg-white p-6 rounded-lg border border-gray-200 border-t-4 border-t-indigo-600 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div
+                        class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-indigo-100 transition-colors">
+                        🔐
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-700 transition-colors">
+                        Administration</h3>
+                    <p class="text-gray-500 text-sm">System oversight, user management, and analytics.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>

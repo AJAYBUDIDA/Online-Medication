@@ -1,0 +1,129 @@
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100 my-8" [ngClass]="{
+        'border-t-4 border-t-blue-600': currentRole === 'patient',
+        'border-t-4 border-t-emerald-600': currentRole === 'doctor',
+        'border-t-4 border-t-amber-500': currentRole === 'pharmacist',
+        'border-t-4 border-t-indigo-600': currentRole === 'admin'
+    }">
+        <div class="text-center mb-8">
+            <div
+                class="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+                ✨
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 capitalize">{{ currentRole }} Registration</h2>
+            <p class="text-gray-500 mt-2 text-sm">Create your new account in seconds.</p>
+        </div>
+
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-xs font-bold mb-2 uppercase tracking-wider">Username</label>
+                <input type="text"
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    name="username" [(ngModel)]="form.username" required minlength="3"
+                    placeholder="Choose a username" />
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-gray-700 text-xs font-bold mb-2 uppercase tracking-wider">Email</label>
+                <input type="email"
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    name="email" [(ngModel)]="form.email" required email placeholder="email@address.com" />
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-xs font-bold mb-2 uppercase tracking-wider">Password</label>
+                <input type="password"
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    name="password" [(ngModel)]="form.password" required minlength="6" placeholder="Min 6 characters" />
+            </div>
+
+            <!-- Dynamic Fields based on Role -->
+            <div *ngIf="currentRole === 'patient'" class="bg-blue-50 p-5 rounded-xl border border-blue-100 mb-6">
+                <h3 class="text-sm font-bold mb-4 text-blue-800 flex items-center"><span class="mr-2">📝</span> Patient
+                    Details</h3>
+                <div class="mb-4">
+                    <input type="number" placeholder="Age"
+                        class="w-full px-4 py-2 bg-white border border-blue-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        name="age" [(ngModel)]="form.age" />
+                </div>
+                <div>
+                    <textarea placeholder="Medical History (Optional)"
+                        class="w-full px-4 py-2 bg-white border border-blue-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
+                        name="medicalHistory" [(ngModel)]="form.medicalHistory"></textarea>
+                </div>
+            </div>
+
+            <div *ngIf="currentRole === 'doctor'" class="bg-green-50 p-5 rounded-xl border border-green-100 mb-6">
+                <h3 class="text-sm font-bold mb-4 text-green-800 flex items-center"><span class="mr-2">👨‍⚕️</span>
+                    Doctor Details</h3>
+                <div class="mb-3">
+                    <input type="text" placeholder="Specialization"
+                        class="w-full px-4 py-2 bg-white border border-green-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        name="specialization" [(ngModel)]="form.specialization" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="License Number"
+                        class="w-full px-4 py-2 bg-white border border-green-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        name="licenseNumber" [(ngModel)]="form.licenseNumber" />
+                </div>
+                <div>
+                    <input type="text" placeholder="Hospital Name"
+                        class="w-full px-4 py-2 bg-white border border-green-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        name="hospitalName" [(ngModel)]="form.hospitalName" />
+                </div>
+            </div>
+
+            <div *ngIf="currentRole === 'pharmacist'" class="bg-amber-50 p-5 rounded-xl border border-amber-100 mb-6">
+                <h3 class="text-sm font-bold mb-4 text-amber-800 flex items-center"><span class="mr-2">💊</span>
+                    Pharmacist Details</h3>
+                <div class="mb-3">
+                    <input type="text" placeholder="Pharmacy Name"
+                        class="w-full px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        name="pharmacyName" [(ngModel)]="form.pharmacyName" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="License Number"
+                        class="w-full px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        name="licenseNumber" [(ngModel)]="form.licenseNumber" />
+                </div>
+                <div>
+                    <input type="text" placeholder="GST Number"
+                        class="w-full px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        name="gstNumber" [(ngModel)]="form.gstNumber" />
+                </div>
+            </div>
+
+            <div class="mb-6" *ngIf="isSignUpFailed">
+                <div
+                    class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm flex items-center">
+                    <span class="mr-2">⚠️</span> Registration Failed: {{ errorMessage }}
+                </div>
+            </div>
+
+            <div class="mb-6" *ngIf="isSuccessful">
+                <div
+                    class="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-lg text-sm flex items-center">
+                    <span class="mr-2">✅</span> Registration Successful! Redirecting...
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-green-200 transform hover:-translate-y-0.5 transition-all duration-200">
+                Create Account
+            </button>
+
+            <div class="mt-8 text-center border-t border-gray-100 pt-6">
+                <p class="text-gray-500 text-sm">
+                    Already have an account?
+                    <a [routerLink]="['/login', currentRole]"
+                        class="text-green-600 hover:text-green-800 font-semibold hover:underline transition-colors">Login
+                        here</a>
+                </p>
+                <div class="mt-4">
+                    <a routerLink="/" class="text-gray-400 hover:text-gray-600 text-xs transition-colors">← Back to
+                        Home</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

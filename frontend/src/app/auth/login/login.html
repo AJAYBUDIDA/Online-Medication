@@ -1,0 +1,76 @@
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100" [ngClass]="{
+        'border-t-4 border-t-blue-600': currentRole === 'patient',
+        'border-t-4 border-t-emerald-600': currentRole === 'doctor',
+        'border-t-4 border-t-amber-500': currentRole === 'pharmacist',
+        'border-t-4 border-t-indigo-600': currentRole === 'admin'
+    }">
+        <div class="text-center mb-8">
+            <div
+                class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+                👋
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 capitalize">{{ currentRole }} Login</h2>
+            <p class="text-gray-500 mt-2 text-sm">Welcome back! Please sign in to continue.</p>
+        </div>
+
+        <form (ngSubmit)="form.email && form.password && onSubmit()" #f="ngForm" novalidate>
+            <div class="mb-6">
+                <label for="email" class="block text-gray-700 text-xs font-bold mb-2 uppercase tracking-wider">Email
+                    Address</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">📧</span>
+                    <input type="email"
+                        class="w-full pl-10 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        name="email" [(ngModel)]="form.email" required email #email="ngModel"
+                        placeholder="name@example.com" />
+                </div>
+                <div class="text-red-500 text-xs mt-1" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']">Email is required</div>
+                    <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label for="password"
+                    class="block text-gray-700 text-xs font-bold mb-2 uppercase tracking-wider">Password</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">🔒</span>
+                    <input type="password"
+                        class="w-full pl-10 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"
+                        placeholder="••••••••" />
+                </div>
+                <div class="text-red-500 text-xs mt-1" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Password is required</div>
+                    <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+                </div>
+            </div>
+
+            <div class="mb-6" *ngIf="isLoginFailed">
+                <div
+                    class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm flex items-center">
+                    <span class="mr-2">⚠️</span> {{ errorMessage }}
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-200 transform hover:-translate-y-0.5 transition-all duration-200">
+                Sign In
+            </button>
+
+            <div class="mt-8 text-center border-t border-gray-100 pt-6">
+                <p class="text-gray-500 text-sm">
+                    Don't have an account?
+                    <a [routerLink]="['/register', currentRole]"
+                        class="text-blue-600 hover:text-blue-800 font-semibold hover:underline transition-colors">Register
+                        here</a>
+                </p>
+                <div class="mt-4">
+                    <a routerLink="/" class="text-gray-400 hover:text-gray-600 text-xs transition-colors">← Back to
+                        Home</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
