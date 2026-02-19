@@ -37,3 +37,9 @@ uploads/
 # Brain/Agent
 .gemini/
 brain/
+
+# Debug Scripts
+*.ps1
+*.py
+*.out
+*.err
